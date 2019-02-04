@@ -37,6 +37,7 @@ namespace Player {
                 StartCoroutine(CameraMoveUp());
             }
         }
+
         private IEnumerator CameraMoveRight() {
             var pos = mainCamera.WorldToViewportPoint(player.transform.position);
             while (new Rect(0.5f, moveArea.y, 0.5f, moveArea.height).Contains(pos)) {
@@ -67,8 +68,6 @@ namespace Player {
                 pos = mainCamera.WorldToViewportPoint(player.transform.position);
                 yield return null;
             }
-            
-            Debug.Log(pos);
 
             pausable.Resume();
         }
@@ -106,6 +105,5 @@ namespace Player {
 
             pausable.Resume();
         }
-
     }
 }
