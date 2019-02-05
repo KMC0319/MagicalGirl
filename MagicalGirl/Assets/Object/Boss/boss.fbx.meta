@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 43abf37b70ef48846b3273e935d3d8c2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: body01
+    100002: body1
+    100004: body2
+    100006: //RootNode
+    100008: boss
+    100010: boss_locator
+    100012: center
+    100014: dress01
+    100016: eyeleft
+    100018: eyeright
+    100020: hair
+    100022: hat
+    100024: L_body
+    100026: L_elbow
+    100028: L_littlefinger1
+    100030: L_littlefinger2
+    100032: L_littlefinger3
+    100034: L_middlefinger1
+    100036: L_middlefinger2
+    100038: L_middlefinger3
+    100040: L_pointer1
+    100042: L_pointer2
+    100044: L_pointer3
+    100046: L_ringfinger1
+    100048: L_ringfinger2
+    100050: L_ringfinger3
+    100052: L_shoulder
+    100054: L_thumb1
+    100056: L_thumb2
+    100058: L_thumb3
+    100060: L_wrist
+    100062: neck
+    100064: R_body
+    100066: R_elbow
+    100068: R_littlefinger1
+    100070: R_littlefinger2
+    100072: R_littlefinger3
+    100074: R_middlefinger1
+    100076: R_middlefinger2
+    100078: R_middlefinger3
+    100080: R_pointer1
+    100082: R_pointer2
+    100084: R_pointer3
+    100086: R_ringfinger1
+    100088: R_ringfinger2
+    100090: R_ringfinger3
+    100092: R_shoulder
+    100094: R_thumb1
+    100096: R_thumb2
+    100098: R_thumb3
+    100100: R_wrist
+    100102: reg01
+    100104: reg02
+    100106: ribbon
+    100108: ribbon01
+    100110: ribbon02
+    400000: body01
+    400002: body1
+    400004: body2
+    400006: //RootNode
+    400008: boss
+    400010: boss_locator
+    400012: center
+    400014: dress01
+    400016: eyeleft
+    400018: eyeright
+    400020: hair
+    400022: hat
+    400024: L_body
+    400026: L_elbow
+    400028: L_littlefinger1
+    400030: L_littlefinger2
+    400032: L_littlefinger3
+    400034: L_middlefinger1
+    400036: L_middlefinger2
+    400038: L_middlefinger3
+    400040: L_pointer1
+    400042: L_pointer2
+    400044: L_pointer3
+    400046: L_ringfinger1
+    400048: L_ringfinger2
+    400050: L_ringfinger3
+    400052: L_shoulder
+    400054: L_thumb1
+    400056: L_thumb2
+    400058: L_thumb3
+    400060: L_wrist
+    400062: neck
+    400064: R_body
+    400066: R_elbow
+    400068: R_littlefinger1
+    400070: R_littlefinger2
+    400072: R_littlefinger3
+    400074: R_middlefinger1
+    400076: R_middlefinger2
+    400078: R_middlefinger3
+    400080: R_pointer1
+    400082: R_pointer2
+    400084: R_pointer3
+    400086: R_ringfinger1
+    400088: R_ringfinger2
+    400090: R_ringfinger3
+    400092: R_shoulder
+    400094: R_thumb1
+    400096: R_thumb2
+    400098: R_thumb3
+    400100: R_wrist
+    400102: reg01
+    400104: reg02
+    400106: ribbon
+    400108: ribbon01
+    400110: ribbon02
+    2100000: eye
+    2100002: body_hair
+    2100004: dress
+    2100006: hat_ribbon
+    4300000: eyeleft
+    4300002: eyeright
+    4300004: hair
+    4300006: body01
+    4300008: dress01
+    4300010: ribbon02
+    4300012: ribbon01
+    4300014: hat
+    9500000: //RootNode
+    13700000: body01
+    13700002: dress01
+    13700004: eyeleft
+    13700006: eyeright
+    13700008: hair
+    13700010: hat
+    13700012: ribbon01
+    13700014: ribbon02
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_hair
+    second: {fileID: 2100000, guid: 1feef8973544b0f45aa10d21f3afc660, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dress
+    second: {fileID: 2100000, guid: 1154a659d2fba8c4da6584fcbebf5967, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye
+    second: {fileID: 2100000, guid: 124596e1f9247414b9d0f37cdaac9264, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hat_ribbon
+    second: {fileID: 2100000, guid: 958ba877137d13b4d9fac6751ea3cf12, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
