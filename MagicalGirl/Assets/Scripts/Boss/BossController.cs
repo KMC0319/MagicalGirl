@@ -7,12 +7,16 @@ namespace Boss {
             Wait, 
         }
         [SerializeField] private int hp;
-        private Camera mainCamera;
+        
         private BossState state;
         private bool isActive;
 
+        private Camera mainCamera;
+        private BossAttack bossAttack;
+        
         void Start() {
             mainCamera = Camera.main;
+            bossAttack = GetComponent<BossAttack>();
         }
 
         void Update() {
@@ -24,7 +28,10 @@ namespace Boss {
         }
 
         private void Init() {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             state = BossState.Wait;
+            StartCoroutine(bossAttack.WeaponBurst());
         }
 
         private bool IsInCamera() {
@@ -39,7 +46,6 @@ namespace Boss {
         public void Damage(int damage) {
             hp -= damage;
             if(hp <= 0) Dead();
-            
         }
     }
 }

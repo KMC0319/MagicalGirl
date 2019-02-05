@@ -1,11 +1,11 @@
-﻿using UnityEditor;
+﻿using Systems;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Title {
     public class TitleButton : MonoBehaviour {
         public void OnClickStart() {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(Scene.Game);
         }
 
         public void Quit() {
