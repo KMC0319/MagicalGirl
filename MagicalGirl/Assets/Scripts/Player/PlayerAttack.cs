@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IHitItem
 {
-    List<PlayerItem> Items;
+    public List<PlayerItem> Items;
 
     public void GetItem( PlayerItem item)
     {
