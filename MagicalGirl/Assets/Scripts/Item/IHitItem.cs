@@ -1,6 +1,6 @@
 namespace Item {
     public interface IHitItem {
-        void GetItem();
+        void GetItem(PlayerItem item);
         void Heal(int healPower);
     }
 }
