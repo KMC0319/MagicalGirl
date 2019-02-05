@@ -5,42 +5,44 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     Animator animator;
+    Rigidbody rb;
+
+
+    float moveX = 0f;
+    float moveY = 0f;
+
     [SerializeField]
     private float speed;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
     private void Update()
     {
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
         Vector3 pos = transform.position;
-
-
-        if (Input.GetAxis("Horizontal") > 0.25)
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, transform.up*-0.5f);
+        moveX = Input.GetAxis("Horizontal") * speed;
+        if (Input.GetButtonDown("Vertical") && Physics.SphereCast(ray, -0.5f, out hit, 1.1f, LayerMask.GetMask("Ground")))
         {
-            pos.x += speed*0.025f;
-
+            rb.AddForce(transform.up * speed * 0.7f,ForceMode.Impulse);
         }
-        else if(Input.GetAxis("Horizontal") < -0.25)
+        if (Input.GetButton("Horizontal"))
         {
-            pos.x -= speed*0.025f;
-        }
-
-        if (Input.GetButton("Vertical"))
-        {
-            rigidbody.AddForce(transform.up*speed*5);
-        }
-        else if(Input.GetAxis("Vertical") == 0&&transform.position.y > 0.8)
-        {
-            rigidbody.AddForce(transform.up * speed * -5);
+            rb.velocity = new Vector3(moveX,rb.velocity.y,0);
         }
         if (Input.GetButtonDown("Submit"))
         {
             animator.SetBool("attack", true);
         }
-        transform.position = pos;
+    }
+    void OnDrawGizmos()
+    {
+        //　Capsuleのレイを疑似的に視覚化
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.up*-0.5f, 0.5f);
     }
 
     void setBool()
