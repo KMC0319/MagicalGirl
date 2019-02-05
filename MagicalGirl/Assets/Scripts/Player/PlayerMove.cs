@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private int jumpcount = 2;
+    private int jumpcount = 1;
 
     private void Start()
     {
@@ -28,14 +28,18 @@ public class PlayerMove : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.up*-0.5f);
         float x = Input.GetAxisRaw("Horizontal");
         moveX = Input.GetAxis("Horizontal") * speed * 0.7f;
-        if ((Input.GetButtonDown("Jump") && jumpcount > 0) )
+        if (Input.GetButtonDown("Jump") && Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground")))
+        {
+            rb.AddForce(transform.up * speed * 0.5f, ForceMode.Impulse);
+        }
+        else if (Input.GetButtonDown("Jump") && jumpcount > 0)
         {
             rb.AddForce(transform.up * speed * 0.5f,ForceMode.Impulse);
             jumpcount--;
         }
-        if(jumpcount<=0 && Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground")))
+        if (jumpcount<=0 && Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground")))
         {
-            jumpcount = 2;
+            jumpcount = 1;
         }
         if (x != 0)
         {
@@ -55,6 +59,14 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("attack", true);
         }
+        if (Input.GetButton("Submit"))
+        {
+            animator.SetBool("chage", true);
+        }
+        if (Input.GetButtonUp("Submit"))
+        {
+            animator.SetBool("chage", false);
+        }
     }
     void OnDrawGizmos()
     {
@@ -66,5 +78,6 @@ public class PlayerMove : MonoBehaviour
     void setBool()
     {
         animator.SetBool("attack", false);
+        animator.SetBool("chage", false);
     }
 }
