@@ -23,7 +23,8 @@ namespace Player {
         }
 
         private void LateUpdate() {
-            if(isChase) transform.position = player.transform.position + offset;
+            if (isChase)
+                transform.position = new Vector3((player.transform.position + offset).x, transform.position.y, transform.position.z);
         }
 
         public void MoveToBoss() {

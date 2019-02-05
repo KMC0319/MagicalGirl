@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Item;
+using UnityEngine;
 
-public class PlayerAttack : IHitItem
+public class PlayerAttack : MonoBehaviour, IHitItem
 {
-    PlayerItem[] Items;
+    List<PlayerItem> Items;
 
-    public void GetItem()
+    public void GetItem( PlayerItem item)
     {
-
+        Items.Add(gameObject.GetComponents<PlayerItem>().First(i => i.ItemName == item.ItemName));
     }
     public void Heal(int healPower)
     {
