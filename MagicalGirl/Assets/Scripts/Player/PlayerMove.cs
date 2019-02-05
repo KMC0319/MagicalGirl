@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private float speed;
+    private int jumpcount = 2;
 
     private void Start()
     {
@@ -24,10 +25,23 @@ public class PlayerMove : MonoBehaviour
         Vector3 pos = transform.position;
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.up*-0.5f);
-        moveX = Input.GetAxis("Horizontal") * speed;
-        if (Input.GetButtonDown("Vertical") && Physics.SphereCast(ray, -0.5f, out hit, 1.1f, LayerMask.GetMask("Ground")))
+        moveX = Input.GetAxis("Horizontal") * speed * 0.7f;
+        if ((Input.GetButtonDown("Vertical") && Physics.SphereCast(ray, -0.1f, out hit, 0.8f, LayerMask.GetMask("Ground"))) || (Input.GetButtonDown("Vertical") && jumpcount > 0))
         {
-            rb.AddForce(transform.up * speed * 0.7f,ForceMode.Impulse);
+            rb.AddForce(transform.up * speed * 0.5f,ForceMode.Impulse);
+            jumpcount--;
+        }
+        if(jumpcount<=0&& Physics.SphereCast(ray, -0.1f, out hit, 0.8f, LayerMask.GetMask("Ground")))
+        {
+            jumpcount = 2;
+        }
+        if (moveX < 0)
+        {
+            transform.localScale = new Vector3(-1,1,1); 
+        }
+        else if(moveX > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
         }
         if (Input.GetButton("Horizontal"))
         {
@@ -42,7 +56,7 @@ public class PlayerMove : MonoBehaviour
     {
         //　Capsuleのレイを疑似的に視覚化
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.up*-0.5f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position + transform.up*-0.5f, 0.1f);
     }
 
     void setBool()
