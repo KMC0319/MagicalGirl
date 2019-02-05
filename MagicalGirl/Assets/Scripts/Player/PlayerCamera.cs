@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Player {
     /// <summary>
-    /// プレイヤーが端っこに行くと動きを止めてカメラを移動する
+    /// プレイヤーが端に行くと動きを止めてカメラを移動する
     /// </summary>
     public class PlayerCamera : MonoBehaviour {
         [SerializeField] private Rect moveArea = new Rect(0.05f, 0.05f, 0.9f, 0.9f);
@@ -24,7 +24,6 @@ namespace Player {
             if (pausable.Pausing) return;
             var pos = mainCamera.WorldToViewportPoint(player.transform.position);
             if (moveArea.Contains(pos)) return;
-            pausable.Pause();
             if (moveArea.xMin > pos.x) {
                 StartCoroutine(CameraMoveLeft());
             } else if (moveArea.xMax < pos.x) {
@@ -39,70 +38,66 @@ namespace Player {
         }
 
         private IEnumerator CameraMoveRight() {
-            var pos = mainCamera.WorldToViewportPoint(player.transform.position);
-            while (new Rect(0.5f, moveArea.y, 0.5f, moveArea.height).Contains(pos)) {
-                transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
+            pausable.Pause();
+            var targetPos = mainCamera.ViewportToWorldPoint(new Vector3(1.5f, 0.5f));
+            var playerTargetPos = mainCamera.ViewportToWorldPoint(new Vector3(1 + BorderLine.xMin,
+                mainCamera.WorldToViewportPoint(player.transform.position).y,
+                player.transform.position.z - mainCamera.transform.position.z));
+            while (transform.position != targetPos) {
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                player.transform.position = Vector3.MoveTowards(player.transform.position, playerTargetPos, moveSpeed / 3f * Time.deltaTime);
                 yield return null;
             }
 
-            while (BorderLine.Contains(pos)) {
-                transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
-                yield return null;
-            }
-
+            player.transform.position = playerTargetPos;
             pausable.Resume();
         }
 
         private IEnumerator CameraMoveLeft() {
-            var pos = mainCamera.WorldToViewportPoint(player.transform.position);
-            while (new Rect(0f, moveArea.y, 0.5f, moveArea.height).Contains(pos)) {
-                transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
+            pausable.Pause();
+            var targetPos = mainCamera.ViewportToWorldPoint(new Vector3(-0.5f, 0.5f));
+            var playerTargetPos = mainCamera.ViewportToWorldPoint(new Vector3(BorderLine.xMax - 1,
+                mainCamera.WorldToViewportPoint(player.transform.position).y,
+                player.transform.position.z - mainCamera.transform.position.z));
+            while (transform.position != targetPos) {
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                player.transform.position = Vector3.MoveTowards(player.transform.position, playerTargetPos, moveSpeed / 3f * Time.deltaTime);
                 yield return null;
             }
 
-            while (BorderLine.Contains(pos)) {
-                transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
-                yield return null;
-            }
-
+            player.transform.position = playerTargetPos;
             pausable.Resume();
         }
 
         private IEnumerator CameraMoveUp() {
-            var pos = mainCamera.WorldToViewportPoint(player.transform.position);
-            while (new Rect(moveArea.x, 0.5f, moveArea.width, 0.5f).Contains(pos)) {
-                transform.position += new Vector3(0, moveSpeed * Time.deltaTime, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
+            pausable.Pause();
+            var targetPos = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 1.5f));
+            var playerTargetPos = mainCamera.ViewportToWorldPoint(new Vector3(mainCamera.WorldToViewportPoint(player.transform.position).x,
+                BorderLine.yMin + 1,
+                player.transform.position.z - mainCamera.transform.position.z));
+            while (transform.position != targetPos) {
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                player.transform.position = Vector3.MoveTowards(player.transform.position, playerTargetPos, moveSpeed / 3f * Time.deltaTime);
                 yield return null;
             }
 
-            while (BorderLine.Contains(pos)) {
-                transform.position += new Vector3(0, moveSpeed * Time.deltaTime, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
-                yield return null;
-            }
-
+            player.transform.position = playerTargetPos;
             pausable.Resume();
         }
 
         private IEnumerator CameraMoveDown() {
-            var pos = mainCamera.WorldToViewportPoint(player.transform.position);
-            while (new Rect(moveArea.x, 0f, moveArea.width, 0.5f).Contains(pos)) {
-                transform.position -= new Vector3(0, moveSpeed * Time.deltaTime, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
+            pausable.Pause();
+            var targetPos = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, -0.5f));
+            var playerTargetPos = mainCamera.ViewportToWorldPoint(new Vector3(mainCamera.WorldToViewportPoint(player.transform.position).x,
+                BorderLine.yMax - 1,
+                player.transform.position.z - mainCamera.transform.position.z));
+            while (transform.position != targetPos) {
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                player.transform.position = Vector3.MoveTowards(player.transform.position, playerTargetPos, moveSpeed / 3f * Time.deltaTime);
                 yield return null;
             }
 
-            while (BorderLine.Contains(pos)) {
-                transform.position -= new Vector3(0, moveSpeed * Time.deltaTime, 0);
-                pos = mainCamera.WorldToViewportPoint(player.transform.position);
-                yield return null;
-            }
-
+            player.transform.position = playerTargetPos;
             pausable.Resume();
         }
     }
