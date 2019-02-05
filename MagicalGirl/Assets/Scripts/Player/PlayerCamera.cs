@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Player {
     /// <summary>
     /// プレイヤーが端に行くと動きを止めてカメラを移動する
+    /// 背景の幅が違っても新しいエリア背景が真ん中に来るように対応
     /// </summary>
     public class PlayerCamera : MonoBehaviour {
         [SerializeField] private Rect moveArea = new Rect(0.05f, 0.05f, 0.9f, 0.9f);
