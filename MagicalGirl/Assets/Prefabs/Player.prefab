@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5979604439444234011}
   - component: {fileID: 5979604439444234000}
   - component: {fileID: 5979604439444234003}
+  - component: {fileID: 1578959177}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98,8 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589f9a5200da2a545b629bf0df3db162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquipIndex: 0
   speed: 10
-  jumpcount: 2
+  jumpcount: 1
+  playerAttack: {fileID: 1578959177}
 --- !u!136 &5979604439444234004
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -196,3 +199,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0.25, y: -0.1, z: 0}
+--- !u!114 &1578959177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979604439444234008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80b055831d1c24eae10f6c65aaf5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items: []

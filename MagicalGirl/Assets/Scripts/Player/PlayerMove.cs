@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Item;
+using System;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -37,22 +38,33 @@ public class PlayerMove : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.up*-0.5f);
         float x = Input.GetAxisRaw("Horizontal");
+        bool onGround = Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground"));
         moveX = Input.GetAxis("Horizontal") * speed * 0.7f;
 
         if (Input.GetButtonDown("Jump") && Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground")))
         {
+            animator.SetBool("jump", true);
             rb.AddForce(transform.up * speed * 0.5f, ForceMode.Impulse);
         }
         else if (Input.GetButtonDown("Jump") && jumpcount > 0)
         {
+            animator.Play("PlayerJump");
             rb.velocity=new Vector3(moveX,0,0);
             rb.AddForce(transform.up * speed * 0.5f,ForceMode.Impulse);
             jumpcount--;
         }
-        if (jumpcount<=0 && Physics.Raycast(pos, Vector3.down, out hit, 2f, LayerMask.GetMask("Ground")))
+
+        if (onGround)
         {
+            animator.SetBool("jump", false);
             jumpcount = 1;
+            Debug.Log("true");
         }
+        else
+        {
+            animator.SetBool("jump", true);
+        }
+
         if (x != 0)
         {
             temp = transform.localScale;
@@ -109,15 +121,15 @@ public class PlayerMove : MonoBehaviour
             {
                 EquipNo = 0;
             }
-            if (playerAttack.Items[EquipNo].ItemName == EItemName.Punch)
+            if (playerAttack.Items[EquipNo].ItemName == (EItemName)Enum.ToObject(typeof(EItemName),0))
             {
                 EquipIndex = 0;
             }
-            else if (playerAttack.Items[EquipNo].ItemName == EItemName.IronPipe)
+            else if (playerAttack.Items[EquipNo].ItemName == (EItemName)Enum.ToObject(typeof(EItemName), 1))
             {
                 EquipIndex = 1;
             }
-            else if (playerAttack.Items[EquipNo].ItemName == EItemName.MagicalStick)
+            else if (playerAttack.Items[EquipNo].ItemName == (EItemName)Enum.ToObject(typeof(EItemName), 2))
             {
                 EquipIndex = 2;
             }
