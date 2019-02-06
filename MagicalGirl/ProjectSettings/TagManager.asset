@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Item
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Boss
   - BossAttack
   - Ground
-  - 
-  - 
+  - PlayerAttack
+  - Player
   - 
   - 
   - 

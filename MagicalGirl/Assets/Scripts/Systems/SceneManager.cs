@@ -25,6 +25,11 @@ namespace Systems {
             SceneActivate();
         }
 
+        public static void StartBossBattle() {
+            NowScene = Scene.Boss;
+            SceneActivate();
+        }
+
         //シーン遷移時に行うこと
         private static void SceneActivate() {
             Observable.NextFrame().Subscribe(_ => BackGroundMusicManager.Instance.StartMusic(NowScene));

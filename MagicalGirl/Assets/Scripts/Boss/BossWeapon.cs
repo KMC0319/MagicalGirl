@@ -11,7 +11,7 @@ namespace Boss {
         private bool isShoot;
 
         private void Start() {
-            rigid = GetComponent<Rigidbody>();
+            rigid = GetComponentInParent<Rigidbody>();
             Destroy(gameObject, 5f);
         }
 

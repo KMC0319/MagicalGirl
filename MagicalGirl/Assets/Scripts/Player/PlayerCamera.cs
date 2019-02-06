@@ -12,6 +12,7 @@ namespace Player {
         private Camera mainCamera;
         [SerializeField] private Pausable pausable;
         [SerializeField] private GameObject bossStageCenter;
+        [SerializeField] private GameObject wall;
         private bool isChase;
         private Vector3 offset;
 
@@ -44,6 +45,8 @@ namespace Player {
                 player.transform.position = Vector3.MoveTowards(player.transform.position, playerTargetPos, moveSpeed / 3f * Time.deltaTime);
                 yield return null;
             }
+
+            wall.SetActive(true);
             pausable.Resume();
         }
     }

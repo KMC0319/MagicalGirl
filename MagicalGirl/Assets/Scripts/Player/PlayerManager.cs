@@ -1,17 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Systems;
 using UnityEngine;
-using Systems;
 
+namespace Player {
+    public class PlayerManager : MonoBehaviour, IHitAttack {
+        [SerializeField]private int hp;
+        public int HP => hp;
+        private int maxHp;
 
-public class PlayerManager : IHitAttack
-{
-    public int hp;
-    
-    public void Damage(int damage)
-    {
-        hp -= damage;
+        private void Start() {
+            maxHp = hp;
+        }
+
+        public void Damage(int damage) {
+            hp = Mathf.Clamp(hp - damage, 0, maxHp);
+            if(hp <= 0) Dead();
+        }
+
+        private void Dead() {
+            
+        }
     }
-    
-
 }

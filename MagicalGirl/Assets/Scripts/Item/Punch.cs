@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Item {
-    public class Punch  : PlayerItem {
+    public class Punch : PlayerItem {
         [SerializeField] private Collider col;
+
         public override void Attack() {
             col.enabled = true;
             StartCoroutine(EndAttack());
         }
 
         private IEnumerator EndAttack() {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
             col.enabled = false;
         }
     }
