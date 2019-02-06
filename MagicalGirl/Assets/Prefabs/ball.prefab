@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e57e0772447109453e5289a453fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseTime: 1
+  chaseTime: 0.1
   damage: 5
 --- !u!54 &3867152252171633225
 Rigidbody:

@@ -4,6 +4,7 @@ using Systems;
 using UI;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Boss {
@@ -12,6 +13,7 @@ namespace Boss {
         public int HP => hp;
         [SerializeField] private float waitTime;
         [SerializeField] private BossHP hpBar;
+        [SerializeField] private Image fadeimg;
 
         private bool isActive;
         private bool canAction;
@@ -54,10 +56,11 @@ namespace Boss {
         }
 
         IEnumerator Waiting() {
+            if (IsDead) yield break;
             var time = 0f;
             while (waitTime > time) {
                 time += Time.deltaTime;
-               
+
                 yield return null;
             }
 
@@ -72,10 +75,30 @@ namespace Boss {
 
         private void Dead() {
             IsDead = true;
-            GetComponent<Animator>().SetBool("IsDead", true);
+            GetComponent<Animator>().SetTrigger("IsDead");
+            StartCoroutine(Ending());
+        }
+
+        private IEnumerator Ending() {
+            yield return new WaitForSeconds(1f);
+            var time = 2f;
+            var a = 0f;
+            fadeimg.color = new Color(fadeimg.color.r, fadeimg.color.b, fadeimg.color.b, a);
+            fadeimg.gameObject.SetActive(true);
+            while (time >= a) {
+                a += Time.deltaTime;
+                fadeimg.color = new Color(fadeimg.color.r, fadeimg.color.b, fadeimg.color.b, a / time);
+                yield return null;
+            }
+
+            fadeimg.color = new Color(fadeimg.color.r, fadeimg.color.b, fadeimg.color.b, 1);
+            
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(Scene.Title);
         }
 
         public void Damage(int damage) {
+            if (IsDead) return;
             hp -= damage;
             if (hp <= 0) Dead();
         }

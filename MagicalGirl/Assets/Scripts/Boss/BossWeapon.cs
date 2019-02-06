@@ -35,8 +35,8 @@ namespace Boss {
         }
 
         private void OnTriggerEnter(Collider other) {
-            if (other.CompareTag("Player") && other.GetComponent<IHitAttack>() != null) {
-                other.GetComponent<IHitAttack>().Damage(damage);
+            if (other.CompareTag("Player") && other.gameObject.GetComponent<IHitAttack>() != null) {
+                other.gameObject.GetComponent<IHitAttack>().Damage(damage);
             }
 
             if (other.CompareTag("Ground")) {

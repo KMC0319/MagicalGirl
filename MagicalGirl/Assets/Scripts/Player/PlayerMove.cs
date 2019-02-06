@@ -31,13 +31,13 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("jump", true);
             rb.velocity = new Vector3(rb.velocity.x,0,rb.velocity.z);
-            rb.AddForce(transform.up * speed * 0.5f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 10f, ForceMode.Impulse);
         }
         else if (Input.GetButtonDown("Jump") && jumpcount > 0)
         {
             animator.Play("PlayerJump");
             rb.velocity = new Vector3(rb.velocity.x,0,rb.velocity.z);
-            rb.AddForce(transform.up * speed * 0.5f,ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f,ForceMode.Impulse);
             jumpcount--;
         }
 
@@ -45,7 +45,6 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("jump", false);
             jumpcount = 1;
-            Debug.Log("true");
         }
         else
         {

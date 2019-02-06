@@ -17,6 +17,10 @@ namespace Boss {
                 walktime -= Time.deltaTime;
                 rigid.velocity = transform.parent.forward * speed;
                 yield return null;
+                if (bossController.IsDead) {
+                    rigid.velocity = Vector3.zero;
+                    yield break;
+                }
             }
 
             rigid.velocity = Vector3.zero;

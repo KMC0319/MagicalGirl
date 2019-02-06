@@ -22,6 +22,7 @@ namespace Systems {
 
             DontDestroyOnLoad(gameObject);
             audioSource = GetComponent<AudioSource>();
+            StartMusic(SceneManager.NowScene);
         }
 
         public void StartMusic(Scene nowScene) {
@@ -29,18 +30,13 @@ namespace Systems {
             switch (nowScene) {
                 case Scene.Title:
                     break;
-                case Scene.Game:/*
+                case Scene.Game:
                     audioSource.clip = audioClips[0];
-                    audioSource.Play();*/
+                    audioSource.Play();
                     break;
-                case Scene.Boss:/*
-                    audioSource.clip = audioClips[3];
-                    audioSource.PlayOneShot(audioClips[3]);
-                    Observable.Timer(TimeSpan.FromSeconds(audioClips[3].length))
-                        .Subscribe(_ => {
-                            audioSource.clip = audioClips[4];
-                            audioSource.Play();
-                        });*/
+                case Scene.Boss:
+                    audioSource.clip = audioClips[1];
+                    audioSource.Play();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("nowScene", nowScene, null);

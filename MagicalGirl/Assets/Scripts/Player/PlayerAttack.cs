@@ -22,9 +22,9 @@ public class PlayerAttack : MonoBehaviour, IHitItem {
         Items.Add(GetComponent<MagicalStick>());
     }
 
-    public void GetItem(PlayerItem item) {
-        if (Items.Contains(item)) return;
-        Items.Add(gameObject.GetComponents<PlayerItem>().First(i => i.ItemName == item.ItemName));
+    public void GetItem(EItemName itemName) {
+        if (Items.Any(i=>i.ItemName == itemName)) return;
+        Items.Add(gameObject.GetComponents<PlayerItem>().First(i => i.ItemName == itemName));
     }
 
     public void Heal(int healPower) {
@@ -45,12 +45,7 @@ public class PlayerAttack : MonoBehaviour, IHitItem {
         equipItem.ChangeItem(Items[currentItemNum].Sprite);
     }
 
-    public void StartAttack() {
-        isAttacking = true;
-        Items[currentItemNum].Attack();
-    }
-
-    public void EndAttack() {
-        
+    public void StartAttack(int num) {
+        Items.First(i => i.ItemName == (EItemName) num).Attack();
     }
 }
